@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
 import path from "path";
-import { pcDataType } from "../type/pcDataType";
-import { errorType } from "../type/errorType";
+import { pcDataType } from "./types/pcDataType";
+import { errorType } from "./types/errorType";
 
 export default function handler(
   req: NextApiRequest,

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { pcDataType } from "./type/pcDataType";
+import { pcDataType } from "./api/types/pcDataType";
 
 export default function Wol() {
   const [pcs, setPcs] = useState<pcDataType[]>([]);

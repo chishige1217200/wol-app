@@ -2,9 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import wol from "wake_on_lan";
 import fs from "fs";
 import path from "path";
-import { pcDataType } from "../type/pcDataType";
-import { messageType } from "../type/messageType";
-import { errorType } from "../type/errorType";
+import { pcDataType } from "./types/pcDataType";
+import { messageType } from "./types/messageType";
+import { errorType } from "./types/errorType";
 
 export default function handler(
   req: NextApiRequest,
