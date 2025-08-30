@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
+import { Oxanium } from "next/font/google";
 import { pcDataType } from "./api/types/pcDataType";
+
+const oxanium = Oxanium({
+  variable: "--font-oxanium",
+  subsets: ["latin"],
+});
 
 export default function Wol() {
   const [pcs, setPcs] = useState<pcDataType[]>([]);
@@ -35,15 +41,16 @@ export default function Wol() {
   };
 
   return (
-    <div style={{ fontFamily: "sans-serif", padding: "20px" }}>
-      <h1>Wake On LAN</h1>
-      <select value={selectedMac} onChange={e => setSelectedMac(e.target.value)}>
+    <div style={{ fontFamily: "sans-serif", padding: "20px", textAlign: "center" }}>
+      <h1 className={oxanium.className} style={{fontSize: "40px"}}>Wake On LAN</h1>
+      <select value={selectedMac} onChange={e => setSelectedMac(e.target.value)} style={{ marginBottom: "20px" }}>
         {pcs.map(pc => (
           <option key={pc.mac} value={pc.mac}>
             {pc.name} ({pc.mac})
           </option>
         ))}
       </select>
+      <br />
       <button onClick={wakePC} style={{ marginLeft: "10px" }}>起動</button>
       <p>{status}</p>
     </div>
