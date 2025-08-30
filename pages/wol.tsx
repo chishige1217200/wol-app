@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Oxanium } from "next/font/google";
+import { ShimmerButton } from "@/components/magicui/shimmer-button";
 import { pcDataType } from "./api/types/pcDataType";
 
 const oxanium = Oxanium({
@@ -26,7 +27,7 @@ export default function Wol() {
 
   // WOL実行
   const wakePC = async () => {
-    setStatus("起動コマンド送信中...");
+    setStatus("WOLパケット送信中...");
     const res = await fetch("/api/wake", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -43,16 +44,22 @@ export default function Wol() {
   return (
     <div style={{ fontFamily: "sans-serif", padding: "20px", textAlign: "center" }}>
       <h1 className={oxanium.className} style={{fontSize: "40px"}}>Wake On LAN</h1>
-      <select value={selectedMac} onChange={e => setSelectedMac(e.target.value)} style={{ marginBottom: "20px" }}>
+      <select name="pulldown" value={selectedMac} onChange={e => setSelectedMac(e.target.value)}>
         {pcs.map(pc => (
           <option key={pc.mac} value={pc.mac}>
             {pc.name} ({pc.mac})
           </option>
         ))}
       </select>
-      <br />
-      <button onClick={wakePC} style={{ marginLeft: "10px" }}>起動</button>
-      <p>{status}</p>
+      <div className="flex justify-center mt-5 mb-5">
+        <ShimmerButton className={`shadow-2xl ${oxanium.className}`} onClick={wakePC}>
+          <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
+            ACTIVATE
+          </span>
+        </ShimmerButton>
+      </div>
+
+      <p className="min-h-6">{status}</p>
     </div>
   );
 }
