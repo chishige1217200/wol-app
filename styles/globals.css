@@ -19,6 +19,14 @@
   }
 }
 
+select, option {
+  background-color: var(--background);
+  color: var(--foreground);
+  border: 1px solid var(--foreground);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

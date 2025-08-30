@@ -39,7 +39,7 @@ export default function Wol() {
       <h1>Wake On LAN</h1>
       <select value={selectedMac} onChange={e => setSelectedMac(e.target.value)}>
         {pcs.map(pc => (
-          <option key={pc.mac} value={pc.mac} style={{ backgroundColor: "#000000" }}>
+          <option key={pc.mac} value={pc.mac}>
             {pc.name} ({pc.mac})
           </option>
         ))}
