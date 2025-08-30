@@ -1,10 +1,19 @@
 import { useEffect, useState } from "react";
+import { Oxanium } from "next/font/google";
+import { cn } from "@/lib/utils";
+import { AnimatedGridPattern } from "@/components/magicui/animated-grid-pattern";
+import { ShimmerButton } from "@/components/magicui/shimmer-button";
 import { pcDataType } from "./api/types/pcDataType";
+
+const oxanium = Oxanium({
+  variable: "--font-oxanium",
+  subsets: ["latin"],
+});
 
 export default function Wol() {
   const [pcs, setPcs] = useState<pcDataType[]>([]);
   const [selectedMac, setSelectedMac] = useState("");
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("操作待機中...");
 
   // 初回ロード時にPC一覧を取得
   useEffect(() => {
@@ -20,7 +29,7 @@ export default function Wol() {
 
   // WOL実行
   const wakePC = async () => {
-    setStatus("起動コマンド送信中...");
+    setStatus("WOLパケット送信中...");
     const res = await fetch("/api/wake", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -35,17 +44,33 @@ export default function Wol() {
   };
 
   return (
-    <div style={{ fontFamily: "sans-serif", padding: "20px" }}>
-      <h1>Wake On LAN</h1>
-      <select value={selectedMac} onChange={e => setSelectedMac(e.target.value)}>
+    <div style={{ fontFamily: "sans-serif", padding: "20px", textAlign: "center" }}>
+      <AnimatedGridPattern
+        numSquares={30}
+        maxOpacity={0.1}
+        duration={2}
+        repeatDelay={1}
+        className={cn(
+          "inset-x-0 inset-y-[-30%] h-[160%] skew-y-12",
+        )}
+      />
+      <h1 className={`${oxanium.className} relative`} style={{fontSize: "40px"}}>Wake On LAN</h1>
+      <select className="relative" name="pulldown" value={selectedMac} onChange={e => setSelectedMac(e.target.value)}>
         {pcs.map(pc => (
-          <option key={pc.mac} value={pc.mac} style={{ backgroundColor: "#000000" }}>
+          <option key={pc.mac} value={pc.mac}>
             {pc.name} ({pc.mac})
           </option>
         ))}
       </select>
-      <button onClick={wakePC} style={{ marginLeft: "10px" }}>起動</button>
-      <p>{status}</p>
+      <div className="flex justify-center mt-5 mb-5 relative">
+        <ShimmerButton className={`shadow-2xl ${oxanium.className}`} shimmerSize={"1px"} onClick={wakePC}>
+          <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg relative">
+            ACTIVATE
+          </span>
+        </ShimmerButton>
+      </div>
+
+      <p className="min-h-6 relative">{status}</p>
     </div>
   );
 }
