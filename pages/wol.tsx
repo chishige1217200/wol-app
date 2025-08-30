@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Oxanium } from "next/font/google";
+import { cn } from "@/lib/utils";
+import { AnimatedGridPattern } from "@/components/magicui/animated-grid-pattern";
 import { ShimmerButton } from "@/components/magicui/shimmer-button";
 import { pcDataType } from "./api/types/pcDataType";
 
@@ -43,6 +45,15 @@ export default function Wol() {
 
   return (
     <div style={{ fontFamily: "sans-serif", padding: "20px", textAlign: "center" }}>
+      <AnimatedGridPattern
+        numSquares={30}
+        maxOpacity={0.1}
+        duration={2}
+        repeatDelay={1}
+        className={cn(
+          "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12",
+        )}
+      />
       <h1 className={oxanium.className} style={{fontSize: "40px"}}>Wake On LAN</h1>
       <select name="pulldown" value={selectedMac} onChange={e => setSelectedMac(e.target.value)}>
         {pcs.map(pc => (
