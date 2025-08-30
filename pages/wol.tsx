@@ -63,7 +63,7 @@ export default function Wol() {
         ))}
       </select>
       <div className="flex justify-center mt-5 mb-5 relative">
-        <ShimmerButton className={`shadow-2xl ${oxanium.className}`} onClick={wakePC}>
+        <ShimmerButton className={`shadow-2xl ${oxanium.className}`} shimmerSize={"1px"} onClick={wakePC}>
           <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg relative">
             ACTIVATE
           </span>
