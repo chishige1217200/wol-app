@@ -11,7 +11,7 @@ const oxanium = Oxanium({
 export default function Wol() {
   const [pcs, setPcs] = useState<pcDataType[]>([]);
   const [selectedMac, setSelectedMac] = useState("");
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("操作待機中...");
 
   // 初回ロード時にPC一覧を取得
   useEffect(() => {
