@@ -51,26 +51,26 @@ export default function Wol() {
         duration={2}
         repeatDelay={1}
         className={cn(
-          "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12",
+          "inset-x-0 inset-y-[-30%] h-[160%] skew-y-12",
         )}
       />
-      <h1 className={oxanium.className} style={{fontSize: "40px"}}>Wake On LAN</h1>
-      <select name="pulldown" value={selectedMac} onChange={e => setSelectedMac(e.target.value)}>
+      <h1 className={`${oxanium.className} relative`} style={{fontSize: "40px"}}>Wake On LAN</h1>
+      <select className="relative" name="pulldown" value={selectedMac} onChange={e => setSelectedMac(e.target.value)}>
         {pcs.map(pc => (
           <option key={pc.mac} value={pc.mac}>
             {pc.name} ({pc.mac})
           </option>
         ))}
       </select>
-      <div className="flex justify-center mt-5 mb-5">
+      <div className="flex justify-center mt-5 mb-5 relative">
         <ShimmerButton className={`shadow-2xl ${oxanium.className}`} onClick={wakePC}>
-          <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
+          <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg relative">
             ACTIVATE
           </span>
         </ShimmerButton>
       </div>
 
-      <p className="min-h-6">{status}</p>
+      <p className="min-h-6 relative">{status}</p>
     </div>
   );
 }
