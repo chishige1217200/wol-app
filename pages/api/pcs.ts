@@ -12,9 +12,9 @@ export default function handler(
   try {
     const data = fs.readFileSync(pcsFile, "utf-8");
     const pcs = JSON.parse(data);
-    res.status(200).json(pcs);
+    return res.status(200).json(pcs);
   } catch (err) {
     console.error("PCリスト読み込み失敗:", err);
-    res.status(500).json({ error: "PCリスト読み込みに失敗しました" });
+    return res.status(500).json({ error: "PCリスト読み込みに失敗しました" });
   }
 }

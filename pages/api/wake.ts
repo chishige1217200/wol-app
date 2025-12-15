@@ -31,10 +31,10 @@ export default function handler(
         return res.status(500).json({ error: "WOL失敗: " + error });
       }
       console.log(`WOL送信完了: ${target.name} (${target.mac})`);
-      res.status(200).json({ message: `WOLパケットを送信しました: ${target.name}` });
+      return res.status(200).json({ message: `WOLパケットを送信しました: ${target.name}` });
     });
   } catch (err) {
     console.error("WOL処理失敗:", err);
-    res.status(500).json({ error: "サーバエラー" });
+    return res.status(500).json({ error: "サーバエラー" });
   }
 }
